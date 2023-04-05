@@ -1,0 +1,187 @@
+-HOW TO RUN THE ALREADY WORKING FLASK PRoject  by Shivam Rai. 
+
+THe First task is to  delete the previous .venv folder and create the virtual environment for our project. (This could be done by below steps or
+--> if starting the already made project for first time. Just open command pallet and search create virtual environment .  
+-->Then also open it again and searh new terminal to work in .venv  )
+-->Now you have activated virtual environement (.venv) so installt the tools by below commands
+--> pip install flask
+--> pip install flask-sqlalchemy
+--> Now create the database instance. by below code
+
+flask shell
+from app import db
+db.create_all()
+exit()
+
+-->    Now run the flask app : flask run   , Or python app.py runserver   Or python .\app.py
+--> Open link Ctrl + click , and to close the project go to terminla back and press Ctrl + C
+
+
+_____________________________________________________________--____________________________________
+
+NEW PROJECT STARTS from here.-------------------------
+
+
+*If making a fresh project follow these steps.
+
+=> pip install virtualenv
+
+=> virtualenv env        
+ 
+  if previous/this command not create the env , we need to set the Execution policy from Powershell
+{
+ Set-ExecutionPolicy unrestricted
+ A(YEs to all)
+}
+
+******
+-Activate the environment  :  Every time we need to switch in our environment .
+
+=> .\env\Scripts\activate.ps1
+
+=> pip install flask 
+
+-Google minimal flask app c & p , and add the main code to run app.
+
+-Run in (env) only , if using another teminal just start the env with upper code.(.\env\Scripts\activate.ps1)
+
+-Start the app using below command . or (flask run )
+
+=> python .\app.py              or python  app.py runserver
+ 
+
+-Ctrl + Click on port to view website 
+
+*************
+-render_template('index.html'  , name="Shivam" )   -- need to import this to render html pages with end points we have made using @app_route in app.py . We can pass other objects as well that need to be show in html page eg  {{name}}
+
+-Create the html page and show navbar , form , table etc
+
+
+-For every url we are using in project(app) . We need to make the end points for them in app.py
+
+-Now creating the database , insall 
+
+******  : using sqlite here ..   Extra :  Used MysQL in blog application , only need to chagen the local url and provide user and password of MySql
+=> pip install flask-sqlalchemy
+
+
+Now import it , and use it with configuration.
+
+-from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URL']='sqlite:////todo.db';
+app.config['SQLALCHEMY_TRACK_MODIFICATION']=False
+db=SQLAlchemy(app)
+
+
+____________________ ____________________ ____________________ >  Exclude this
+{
+-(NOT worked for  Not needed )
+Now to create the database in sqlite , we need to go to python interpretter in (env)
+
+ python
+ from app import db
+ db.create_all()             //see a file todo.db will be created
+
+}
+______________________________________________ ____________________ > 
+
+************
+(the above not worked for me Open terminal  in our (venv) . So use this : 
+=>  Use this code in terminal ,after stopping the project in .venv environment. python
+=> flask shell
+=> from app import db
+=> db.create_all()
+
+=> exit()  and you can see the todo.db file is created in instance folder . And rerun the project again : flask run
+
+)
+This created todo.db  file in instance folder
+
+Now add the code in the app.py to save the current details of title and description , using commit .....
+
+    todo=Todo(title="First Todo",desc="Stat learning Python Flask")
+    db.session.add(todo)
+    db.session.commit()
+
+Now As many time we refresh the page, we get this data added in todo.db file.
+
+-Google the SQLite3 Viewer 
+And drag the todo.db file to view them.
+
+********
+-Install VsCode Extension :  jinja2 snippet Kit. for showing the dynamic data in html pages.
+
+-Now to make the serial no.  dynamic in todo list(automaitcaly adjusted if one todo is removed)
+we are going to use jinja template.
+Use loop to index in Sno (refer code)   <th scope="row">{{loop.index}}</th>
+
+#code
+
+  {% for todo    in allTodo  %}
+           
+            <tr>
+              <th scope="row">{{loop.index}}</th>
+              <td>{{todo.title}}</td>
+              <td>{{todo.desc}}</td>
+              <td>{{todo.date_created}}</td>
+             
+              <td style="display: flex; ">    
+                <a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-secondary btn-sm mx-1">Delete</a>
+                <a href="/update/{{todo.sno}}" type="button" class="btn btn-danger btn-sm mx-1">Update</a>             
+              </td> 
+
+            </tr>
+            {% endfor %}
+
+
+-Now to clean the previous data from todo.db file , just delete it and make new todo.db file from previous method.
+
+flask shell
+from app import db
+db.create_all()
+exit();
+
+-To also create the update.html file
+
+We need to use the template inheritance in jinja.
+
+Template Inheritance means . We are going to use {{ jinja block }} , etc 
+Make a common base.html  and place navigation bar,  header foooter in base class and render the page from the base class itself.
+(ie we have made the base.html file and placed the comman code inside . Only the body part is empty in base class.
+
+html ....... navbar etc
+
+{% block body %}
+{% endblock body %}
+
+footer .....etc 
+ 
+)
+
+-Now when we crete the new page eg about.html. We just extend the base template and put the remaining content inside the body block.
+
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block body %} 
+
+    We only need to  place the content of about page here .....
+
+{% endblock body %}
+
+
+-- Ctrl + Shift + R  (Or Ctrl + Refresh symbol on webpage)   (to remvoe changes form cache like body color set red etc. We can also use incognito mode to see the fresh changes made by use .)
+
+
+** Also for all the  href , url used locally in our system we need to use jinja for url for them.
+
+href="{{ url_for('static', filename='css/mystyle.css') }}"
+
+
+-To show the content pre filled in field , we need to use  value attribute.
+value="{{todo.title}}"
+
+
+

@@ -1,0 +1,112 @@
+Running :  FOR SHIVAM RAI
+------------------------------------------------------------------
+-If Myself using this project . Just activate the environment and run the flask app , as i have already have dependecies in my application.
+Just cd  .venv/Scripts   ->  .\activate.ps1    --> cd..   --> cd..    --> flask run 
+___________________________________ 
+
+
+EXTRA :::: FOR NORMAL USERS 
+------------------------------------------------------------------
+Vs code : How to Run the todo List Project.
+
+
+1 . Drag drop Project to vs code .Delete the .venv folder and create your own environment. 
+2. Make sure python3 is installed.( Optional : Python extension install for VsCode , jinja Template Kit , Live Server etc .)
+3. Open (Command pallet ) using Shortcut in VScode  :  CTRL + Shift  + P 
+   Search here :  python create environment venv
+  
+   After this:
+   Open  again (Command pallet )  pallet  and search : open new terminal.
+  
+   After this: Run the follwing terminal commands
+4. Install flask using  :     python -m pip install flask
+5. For database instance  :   pip install flask-sqlalchemy   (todo.db file in instance , To view db  , just go to Google sqlite viewwer.)
+6.Start project       : flask run
+7.Open the link with Ctrl + click to view in browser.
+
+
+Kindly connect with me shivamrai714714@gmail.com . If any issues in running project.
+
+
+THANKYOU !
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NO NEED for This :::
+____________________________________________
+
+Deploying the project. (NOT Worked , now the service is paid and need a credit card.)
+
+Make a account on Heruku.  Intall Heruku CLI from the google.
+
+pip install gunicorn
+pip freeze > requirements.txt      To Freeze the requirements.
+
+Now make Procfile which heruku uses to deploy.
+
+on writing heruku on cmd , it gives error means heruku is not set to path , but its set .(Just restart the application)
+
+-Just close the VS cod e by CLose Window. Now restart vs code and cmd heroku
+
+
+Now follow up command
+
+heroku login
+
+git init
+git add .
+git commit -m "Initial commit"
+
+heroku create todo-shivam
+
+
+git remote -v
+git push heroku master
+
+-Error came , as we have not given space after the web: gunicron app:app
+
+3c7d8e47-86ed-4c16-b6d9-c868b4f9f0e8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

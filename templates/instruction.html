@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+ 
+{% block title %}Instructions{% endblock title %}
+{% block body %} 
+
+
+
+<div class="card col-md-8 offset-2 mt-5">
+
+
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+        <div class="row"  >
+            <div class="col-md-12">
+
+                <mat-card class="mt20">
+
+                    <mat-card-header>
+                        <!-- heading -->
+                        <mat-card-title>
+                            <h2> Read the Instruction Carefully </h2>
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            How to run this Flask Application on your System
+                        </mat-card-subtitle>
+                    </mat-card-header>
+
+
+
+
+                    <mat-card-content class="ml20">
+
+                        <h1><b> </b> </h1>
+                        <p>
+                </p>
+
+                        <mat-divider></mat-divider>
+                        <br>
+                        <h2>Important Instructions</h2>
+
+                        <ul>
+
+                            <li>Open the entire Folder Structure in VSCode </li>
+                            <li> Activate the environement from terminal  .\env\Scripts\activate.ps1 </li>
+                            <li> Run command in terminal to start project :  python .\app.py <b>  Marks </b> </li>                           
+                            <li> Make sure to install virtual environent , install flask . If application do  not work directy .</li>
+        
+                            <li>
+                               
+
+EXTRA :::: 
+Vs code : How to Run the todo List Project.
+
+
+1 . Drag drop to vs code.
+2. Terminal open
+3. Python extension install it.
+   CTRL + Shift  + P (Command pallent )
+   Searrch python create environment venv
+  Open new command pallet and open new terminal
+4 Install flask :  python -m pip install flask
+5.For database instance working :   pip install flask-sqlalchemy
+6.Start project       : flask run
+7.Open the link with Ctrl + click to view in browser.
+
+
+                            </li>
+
+
+                        </ul>
+
+                        <mat-divider></mat-divider>
+
+        
+
+                    </mat-card-content>
+
+                    <mat-card-actions class="text-center my-4">
+                       <div class="container text-center"> <button class="text-center my-4" (click)="startQuiz()" mat-raised-button color="primary">Thanks</button>
+                       </div>
+                    </mat-card-actions>
+
+
+
+
+
+                </mat-card>
+
+
+
+
+
+            </div>
+
+
+        </div>
+      
+    
+    </div>
+</div>
+
+</div>
+
+{% endblock body %}

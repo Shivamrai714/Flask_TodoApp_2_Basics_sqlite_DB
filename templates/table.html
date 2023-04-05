@@ -1,0 +1,81 @@
+
+<!-- It is just to practice the Searhing using JavaScript   NOT   the part of the project Todo App -->
+
+<html>
+<head><title>hi Table Search</title></head>
+
+
+<body>
+    
+
+<h2 style="text-align: center; text-transform: uppercase; color: rebeccapurple ;">Friends</h2>
+
+<input type="text"  id="myInput" placeholder="names.." onkeyup="searchfun()">
+
+<table id="myTable">
+    <tr class="header">
+     <th style="width: 40%;">Name </th>
+     <th style="width: 30%;">Degree </th>
+     <th style="width: 30%;">Profession </th>    
+    </tr>
+
+    <tr>
+      <td>Vinod</td>
+      <td>MCS</td>
+      <td>Full Stack Developer</td>
+    </tr>
+
+    <tr>
+        <td>Ravi</td>
+        <td>Btech</td>
+        <td>Python Developer</td>
+      </tr>
+
+      <tr>
+        <td>Shivam</td>
+        <td>CSE</td>
+        <td>Java Developer</td>
+      </tr>
+
+</table>
+
+
+
+<script>
+
+const searchfun = () =>{
+
+let filter = document.getElementById('myInput').value.toUpperCase();
+console.log(filter)
+let myTable= document.getElementById('myTable');
+let tr=myTable.getElementsByTagName('tr')
+
+for(var i =0 ;i<tr.length;i++)
+{
+    let td=tr[i].getElementsByTagName('td')[0];
+    if(td)
+    {
+        let textValue = td.textContent || td.innerHTML;
+   
+         if(textValue.toUpperCase().indexOf(filter) > -1 )    // if the character matches
+         {
+            tr[i].style.display="";
+         }
+         else
+         tr[i].style.display="none";
+
+    }
+
+}
+
+
+
+}
+
+</script>
+
+
+
+
+</body>
+</html>

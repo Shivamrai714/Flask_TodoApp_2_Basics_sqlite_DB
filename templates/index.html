@@ -1,0 +1,119 @@
+ {% extends 'base.html' %}
+ 
+{% block title %}Home{% endblock title %}
+
+{% block body %} 
+
+
+<!-- Code for flashing the messages  -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category,message in messages %}
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+{{message}}
+ <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+<!--  -->
+
+<!-- Attching the Input form to enter Todo Task -->
+    
+      <div class="container my-3">
+         <div class="card p-3 m-2" style="background-color: #fee2e2;" >
+      
+
+
+          <!-- Form  Starting -->
+            <form action=""  method="POST"   >
+
+            <h2 class="text-center">Enter the Details for the Task :</h2>
+            <div class="mb-3">
+              <label for="title" class="form-label">Task Title </label>
+              <input required name="title" type="text"    class="form-control" id="title" aria-describedby="title">
+             </div>
+            <div class="mb-3">
+              <label for="desc"  class="form-label"> Description</label>
+              <input type="text" required  name="desc" class="form-control" id="desc" />
+            </div>
+            <div class="container text-center">
+            <button  type="submit"  class="btn btn-outline-primary text-center btn-lg mx-1">Submit</button>
+          </div>
+
+        </form>
+           
+          <!-- Adding div to give message  -->
+           <div  id="msg" class="msg"></div>
+  
+           </div>
+      </div>
+    
+
+<!-- Bootstrap table to show todo   : "allTodo" is Class object sent from the app.py while calling the render method ie :::: return render_template('index.html' , allTodo=allTodo)  -->
+    
+<div class="container my-5">
+<h2> Upcomming Tasks : </h2>
+
+{% if allTodo|length == 0  %}
+
+   <div class="alert alert-warning" role="alert">
+   <h5 style="color: red; text-align: center;">No records Found</h5>
+   </div>
+
+  {% else %}
+      
+        <table class="table my-2" id="myTable">
+            <thead class="table-warning">
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Scheduled On</th>
+                <th scope="col">Actions</th>
+                
+              </tr>
+            </thead>
+           
+            <tbody>
+              
+            {% for todo    in allTodo  %}
+           
+            <tr>
+              <th scope="row">{{loop.index}}</th>
+              <td>{{todo.title}}</td>
+              <td>{{todo.desc}}</td>
+              <td>{{todo.date_created}}</td>
+             
+              <td style="display: flex; ">    
+                <a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-secondary btn-sm mx-1">Delete</a>
+                <a href="/update/{{todo.sno}}" type="button" class="btn btn-danger btn-sm mx-1">Update</a>             
+              </td> 
+
+            </tr>
+            {% endfor %}
+
+              
+            </tbody>
+          </table>
+
+{% endif %}
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+ {% endblock body %}
